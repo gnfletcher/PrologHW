@@ -46,4 +46,9 @@ compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion) :-
 	ProbDPos1 < ProbDPos2, 
 	ProbHNeg1 < ProbHNeg2,
 	Desicion = 'test2';
+    ProbDPos1 =< ProbDPos2, 
+	ProbHNeg1 >= ProbHNeg2,
+    Desicion = 'neither';
+    ProbDPos1 >= ProbDPos2, 
+	ProbHNeg1 < ProbHNeg2,
     Desicion = 'neither'.
