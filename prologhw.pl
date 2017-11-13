@@ -5,13 +5,12 @@
 
 medical_test(PatientData, ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Best) :- 
 	sumstat(PatientData, SickPos1, SickPos2, HealthNeg1, HealthNeg2, Pos1, Pos2, Neg1, Neg2),
-	ProbDPos1 = SickPos1/Pos1,
-	ProbDPos2 = SickPos2/Pos2,
-	ProbHNeg1 = HealthNeg1/Neg1,
-	ProbHNeg2 = HealthNeg2/Neg2,
+	ProbDPos1 is float(SickPos1/Pos1),
+	ProbDPos2 is float(SickPos2/Pos2),
+	ProbHNeg1 is float(HealthNeg1/Neg1),
+	ProbHNeg2 is float(HealthNeg2/Neg2),
 	compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion),
-    Best = Desicion,
-    write(ProbDPos1).
+    Best = Desicion.
 
 sumstat([], 0, 0, 0, 0, 0, 0, 0, 0).
 
@@ -29,8 +28,8 @@ sumstat([H|T], SickPos1, SickPos2, HealthNeg1, HealthNeg2, Pos1, Pos2, Neg1, Neg
 
 testresults([_, 0, X, Y], SickPos1, SickPos2, HealthNeg1, HealthNeg2, Pos1, Pos2, Neg1, Neg2) :- 
 	X == 0, Y == 0, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 1, HealthNeg2 is 1, Pos1 is 0, Pos2 is 0, Neg1 is 1, Neg2 is 1;
-	X == 0, Y == 1, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 0, HealthNeg2 is 1, Pos1 is 0, Pos2 is 1, Neg1 is 1, Neg2 is 0;
-	X == 1, Y == 0, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 1, HealthNeg2 is 0, Pos1 is 1, Pos2 is 0, Neg1 is 0, Neg2 is 1;
+	X == 0, Y == 1, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 1, HealthNeg2 is 0, Pos1 is 0, Pos2 is 1, Neg1 is 1, Neg2 is 0;
+	X == 1, Y == 0, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 0, HealthNeg2 is 1, Pos1 is 1, Pos2 is 0, Neg1 is 0, Neg2 is 1;
 	X == 1, Y == 1, SickPos1 is 0, SickPos2 is 0, HealthNeg1 is 0, HealthNeg2 is 0, Pos1 is 1, Pos2 is 1, Neg1 is 0, Neg2 is 0.
 
 testresults([_, 1, X, Y], SickPos1, SickPos2, HealthNeg1, HealthNeg2, Pos1, Pos2, Neg1, Neg2) :- 
