@@ -10,8 +10,13 @@ medical_test(PatientData, ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Best) :-
 	ProbHNeg1 is Health/Neg1,
 	ProbHNeg2 is Health/Neg2,
 	compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion),
-	Best is Desicion.
-
+	%Best is Desicion
+	write('ProbDPos1 = ', ProbDPos1),
+  	write('ProbDPos2 = ', ProbDPos2),
+  	write('ProbHNeg1 = ', ProbDNeg1),
+  	write('ProbHNeg2 = ', ProbDNeg2),
+  	write('Best = ', Best).
+            
 sumstat([], 0, 0, 0, 0, 0, 0).
 
 sumstat([H|T], Sick, Health, Pos1, Pos2, Neg1, Neg2):-
@@ -39,16 +44,16 @@ testresults([_, 1, X, Y], Sick, Health, Pos1, Pos2, Neg1, Neg2) :-
 compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion) :- 
 	ProbDPos1 > ProbDPos2, 
 	ProbHNeg1 > ProbHNeg2,
-	Desicion is "test1".
+	Desicion = "test1".
 	
 compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion) :- 
 	ProbDPos1 < ProbDPos2, 
 	ProbHNeg1 < ProbHNeg2,
-	Desicion is "test2".
+	Desicion = "test2".
 	
 compare(ProbDPos1, ProbDPos2, ProbHNeg1, ProbHNeg2, Desicion) :- 
-	ProbDPos1 >= ProbDPos2, 
-	ProbHNeg1 =< ProbHNeg2;
-	ProbDPos1 =< ProbDPos2, 
-	ProbHNeg1 >= ProbHNeg2,
-	Desicion is "neither".
+	%ProbDPos1 >= ProbDPos2, 
+	%ProbHNeg1 =< ProbHNeg2;
+	%ProbDPos1 =< ProbDPos2, 
+	%ProbHNeg1 >= ProbHNeg2,
+	Desicion = "neither".
